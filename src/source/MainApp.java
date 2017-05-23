@@ -10,14 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Person;
 import model.Setting;
 import model.SettingListWrapper;
-import view.PersonEditDialogController;
-import view.PersonOverviewController;
 import view.RootLayoutController;
+import view.SettingOverviewController;
 
 import java.io.IOException;
 
@@ -74,22 +72,20 @@ public class MainApp extends Application {
     public void showSettingOverview() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("../view/PersonOverview.fxml"));
+            loader.setLocation(MainApp.class.getResource("../view/SettingOverview.fxml"));
             AnchorPane personOverview = (AnchorPane) loader.load();
-
             rootLayout.setCenter(personOverview);
-
-            PersonOverviewController controller = loader.getController();
+            SettingOverviewController controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public boolean showPersonEditDialog(Setting person) {
+    /*public boolean showPersonEditDialog(Setting person) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("../view/PersonEditDialog.fxml"));
+            loader.setLocation(MainApp.class.getResource("../view/PersonEditDialogController.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
 
             Stage dialogStage = new Stage();
@@ -110,7 +106,7 @@ public class MainApp extends Application {
             e.printStackTrace();
             return false;
         }
-    }
+    }*/
 
     public Stage getPrimaryStage() {
         return primaryStage;
