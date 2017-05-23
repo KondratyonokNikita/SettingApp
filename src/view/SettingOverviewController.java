@@ -44,21 +44,23 @@ public class SettingOverviewController {
     }
 
     private void showSettingDetails(Setting setting) {
-        if (setting == null) {
-            splitPane.getItems().set(1, new AnchorPane());
-        } else {
-            try {
-                FXMLLoader loader = new FXMLLoader();
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            if (setting != null) {
                 loader.setLocation(MainApp.class.getResource(setting.getView()));
-                AnchorPane personOverview = loader.load();
-                splitPane.getItems().set(1, personOverview);
+            } else {
+                loader.setLocation(MainApp.class.getResource("../view/EmptyOverview.fxml"));
+            }
+            AnchorPane settingOverview = loader.load();
+            splitPane.getItems().set(1, settingOverview);
+            if (setting != null) {
                 OverviewController controller = loader.getController();
                 controller.setParentController(this);
                 controller.setMainStage(mainApp.getPrimaryStage());
                 controller.showSetting(setting);
-            } catch (IOException e) {
-                e.printStackTrace();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

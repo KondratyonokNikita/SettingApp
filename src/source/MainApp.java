@@ -31,12 +31,6 @@ public class MainApp extends Application {
         temp.add(new Person("Hans", "Muster"));
         temp.add(new Person("Ruth", "Mueller"));
         temp.add(new Person("Heinz", "Kurz"));
-        temp.add(new Person("Cornelia", "Meier"));
-        temp.add(new Person("Werner", "Meyer"));
-        temp.add(new Person("Lydia", "Kunz"));
-        temp.add(new Person("Anna", "Best"));
-        temp.add(new Person("Stefan", "Meier"));
-        temp.add(new Person("Martin", "Mueller"));
         settingData.setSetting(temp);
     }
 
@@ -46,8 +40,8 @@ public class MainApp extends Application {
 
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("AddressApp");
-        this.primaryStage.getIcons().add(new Image("file:resources/images/address_book_32.png"));
+        this.primaryStage.setTitle("SettingApp");
+        this.primaryStage.getIcons().add(new Image("file:resources/images/setting_icon.png"));
         initRootLayout();
         showSettingOverview();
     }

@@ -15,8 +15,7 @@ public class JAXBLoader implements Loader {
     @Override
     public String load(File file, SettingListWrapper storage) {
         try {
-            JAXBContext context = JAXBContext
-                    .newInstance(SettingListWrapper.class);
+            JAXBContext context = JAXBContext.newInstance(SettingListWrapper.class);
             Unmarshaller um = context.createUnmarshaller();
             SettingListWrapper wrapper = (SettingListWrapper) um.unmarshal(file);
             storage.getSetting().clear();
@@ -30,6 +29,10 @@ public class JAXBLoader implements Loader {
 
     @Override
     public String load(SettingListWrapper storage) {
-        return null;
+        File file = Util.getSettingFilePath();
+        if (file != null) {
+            return load(file, storage);
+        }
+        return "Cannot load latest file";
     }
 }
