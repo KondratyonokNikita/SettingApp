@@ -1,5 +1,6 @@
 package loaders;
 
+import model.Setting;
 import model.SettingListWrapper;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -28,7 +29,9 @@ public class DOMLoader implements Loader {
                 Node nNode = nList.item(temp);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) nNode;
-                    storage.getSetting().add(DOMSwitcher.parceNode(element.getAttribute("xsi:type"), element));
+                    Setting setting = Switcher.getObject(element.getAttribute("xsi:type"));
+                    setting.setNode(element);
+                    storage.getSetting().add(setting);
                 }
             }
             return "Successfully loaded data from file:\n" + file.getAbsolutePath();

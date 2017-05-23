@@ -2,8 +2,8 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import loaders.DOMLoader;
 import loaders.Loader;
+import loaders.SAXLoader;
 import savers.BinarySaver;
 import savers.Saver;
 
@@ -17,7 +17,7 @@ import java.io.Serializable;
 /**
  * Created by Samsung on 22.05.2017.
  */
-@XmlRootElement(name = "persons")
+@XmlRootElement(name = "settings")
 @XmlSeeAlso({model.Person.class})
 public class SettingListWrapper implements Serializable {
 
@@ -34,7 +34,8 @@ public class SettingListWrapper implements Serializable {
         saver = new BinarySaver();
         //loader = new JAXBLoader();
         //loader = new BinaryLoader();
-        loader = new DOMLoader();
+        //loader = new DOMLoader();
+        loader = new SAXLoader();
     }
 
     @XmlElement(name = "setting", type = Object.class)

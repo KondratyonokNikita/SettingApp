@@ -2,9 +2,12 @@ package model;
 
 import javafx.beans.property.*;
 import org.w3c.dom.Element;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
 import utils.LocalDateAdapter;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 
@@ -47,6 +50,43 @@ public class Person implements Setting {
         this.setPostalCode(Integer.parseInt(element.getElementsByTagName("postalCode").item(0).getTextContent()));
         this.setCity(element.getElementsByTagName("city").item(0).getTextContent());
         this.setBirthday(LocalDate.parse(element.getElementsByTagName("birthday").item(0).getTextContent()));
+    }
+
+    @XmlTransient
+    private String currentElement;
+
+    @Override
+    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+        this.currentElement = qName;
+        if (currentElement.equalsIgnoreCase("setting")) {
+            this.setFirstName(attributes.getValue("firstName"));
+        }
+    }
+
+    @Override
+    public void endElement(String uri, String localName, String qName) throws SAXException {
+        this.currentElement = "";
+    }
+
+    @Override
+    public void characters(char[] ch, int start, int length) throws SAXException {
+        switch (this.currentElement) {
+            case "lastName":
+                this.setLastName(new String(ch, start, length));
+                break;
+            case "street":
+                this.setStreet(new String(ch, start, length));
+                break;
+            case "postalCode":
+                this.setPostalCode(Integer.parseInt(new String(ch, start, length)));
+                break;
+            case "city":
+                this.setCity(new String(ch, start, length));
+                break;
+            case "birthday":
+                this.setBirthday(LocalDate.parse(new String(ch, start, length)));
+                break;
+        }
     }
 
     public StringProperty nameProperty() {
