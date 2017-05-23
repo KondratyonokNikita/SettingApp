@@ -1,6 +1,7 @@
 package model;
 
 import javafx.beans.property.StringProperty;
+import org.w3c.dom.Element;
 
 import java.io.Serializable;
 
@@ -13,4 +14,6 @@ public interface Setting extends Serializable {
     String getView();
 
     PlainSetting getPlain();
+
+    void setNode(Element element);
 }

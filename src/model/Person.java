@@ -1,6 +1,7 @@
 package model;
 
 import javafx.beans.property.*;
+import org.w3c.dom.Element;
 import utils.LocalDateAdapter;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -36,6 +37,16 @@ public class Person implements Setting {
     @Override
     public PlainSetting getPlain() {
         return new PlainPerson(this);
+    }
+
+    @Override
+    public void setNode(Element element) {
+        this.setFirstName(element.getAttribute("firstName"));
+        this.setLastName(element.getElementsByTagName("lastName").item(0).getTextContent());
+        this.setStreet(element.getElementsByTagName("street").item(0).getTextContent());
+        this.setPostalCode(Integer.parseInt(element.getElementsByTagName("postalCode").item(0).getTextContent()));
+        this.setCity(element.getElementsByTagName("city").item(0).getTextContent());
+        this.setBirthday(LocalDate.parse(element.getElementsByTagName("birthday").item(0).getTextContent()));
     }
 
     public StringProperty nameProperty() {
