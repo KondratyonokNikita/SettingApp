@@ -60,7 +60,7 @@ public class MainApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        settingData.load();
+        //settingData.load();
     }
 
     public void showSettingOverview() {

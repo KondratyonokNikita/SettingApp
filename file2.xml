@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<settings>
+    <setting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="person" firstName="Nikita">
+        <birthday xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">1999-02-21</birthday>
+        <city>Minsk</city>
+        <lastName>Kondratyonok</lastName>
+        <postalCode>220056</postalCode>
+        <street>Rogachevskaya</street>
+    </setting>
+    <setting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="person" firstName="Ruth">
+        <birthday xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">1999-02-21</birthday>
+        <city>какой-то город</city>
+        <lastName>Mueller</lastName>
+        <postalCode>1234</postalCode>
+        <street>какая-то улица</street>
+    </setting>
+    <setting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="person" firstName="Heinz">
+        <birthday xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">1999-02-21</birthday>
+        <city>какой-то город</city>
+        <lastName>Kurz</lastName>
+        <postalCode>1234</postalCode>
+        <street>какая-то улица</street>
+    </setting>
+</settings>

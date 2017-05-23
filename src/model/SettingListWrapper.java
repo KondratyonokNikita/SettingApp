@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import loaders.Loader;
 import loaders.SAXLoader;
-import savers.BinarySaver;
+import savers.JAXBSaver;
 import savers.Saver;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -30,8 +30,8 @@ public class SettingListWrapper implements Serializable {
 
     public SettingListWrapper() {
         storage  = FXCollections.observableArrayList();
-        //saver = new JAXBSaver();
-        saver = new BinarySaver();
+        saver = new JAXBSaver();
+        //saver = new BinarySaver();
         //loader = new JAXBLoader();
         //loader = new BinaryLoader();
         //loader = new DOMLoader();
