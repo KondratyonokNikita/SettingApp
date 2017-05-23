@@ -2,7 +2,7 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import loaders.JAXBLoader;
+import loaders.BinaryLoader;
 import loaders.Loader;
 import savers.BinarySaver;
 import savers.Saver;
@@ -32,7 +32,8 @@ public class SettingListWrapper implements Serializable {
         storage  = FXCollections.observableArrayList();
         //saver = new JAXBSaver();
         saver = new BinarySaver();
-        loader = new JAXBLoader();
+        //loader = new JAXBLoader();
+        loader = new BinaryLoader();
     }
 
     @XmlElement(name = "setting", type = Object.class)

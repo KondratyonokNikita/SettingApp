@@ -12,12 +12,12 @@ import java.time.LocalDate;
  */
 public class Person implements Setting {
 
-    private final StringProperty firstName;
-    private final StringProperty lastName;
-    private final StringProperty street;
-    private final IntegerProperty postalCode;
-    private final StringProperty city;
-    private final ObjectProperty<LocalDate> birthday;
+    private StringProperty firstName;
+    private StringProperty lastName;
+    private StringProperty street;
+    private IntegerProperty postalCode;
+    private StringProperty city;
+    private ObjectProperty<LocalDate> birthday;
 
     public Person() {
         this(null, null);
@@ -33,6 +33,7 @@ public class Person implements Setting {
         this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
     }
 
+    @Override
     public PlainSetting getPlain() {
         return new PlainPerson(this);
     }
