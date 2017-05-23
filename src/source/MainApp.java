@@ -37,7 +37,7 @@ public class MainApp extends Application {
         temp.add(new Person("Anna", "Best"));
         temp.add(new Person("Stefan", "Meier"));
         temp.add(new Person("Martin", "Mueller"));
-        settingData.setPersons(temp);
+        settingData.setSetting(temp);
     }
 
     public SettingListWrapper getPersonData() {

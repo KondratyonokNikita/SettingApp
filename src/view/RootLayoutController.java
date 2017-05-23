@@ -41,6 +41,7 @@ public class RootLayoutController {
             String message = storage.load(file);
             Util.showAlert("Open dialog", message, mainApp.getPrimaryStage(), Alert.AlertType.INFORMATION);
         }
+
     }
 
     @FXML

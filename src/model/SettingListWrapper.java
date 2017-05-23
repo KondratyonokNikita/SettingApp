@@ -2,8 +2,8 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import loaders.JAXBLoader;
 import loaders.Loader;
-import loaders.MyLoader;
 import savers.JAXBSaver;
 import savers.Saver;
 
@@ -30,7 +30,7 @@ public class SettingListWrapper {
     public SettingListWrapper() {
         storage  = FXCollections.observableArrayList();
         saver = new JAXBSaver();
-        loader = new MyLoader();
+        loader = new JAXBLoader();
     }
 
     @XmlElement(name = "setting", type = Object.class)
@@ -38,7 +38,7 @@ public class SettingListWrapper {
         return storage;
     }
 
-    public void setPersons(ObservableList<Setting> storage) {
+    public void setSetting(ObservableList<Setting> storage) {
         this.storage = storage;
     }
 
