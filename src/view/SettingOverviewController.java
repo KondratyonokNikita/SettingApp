@@ -2,6 +2,7 @@ package view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
@@ -11,11 +12,13 @@ import model.Setting;
 import source.MainApp;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Created by Samsung on 22.05.2017.
  */
-public class SettingOverviewController {
+public class SettingOverviewController implements Initializable {
     @FXML
     private TableView<Setting> personTable;
     @FXML
@@ -30,7 +33,7 @@ public class SettingOverviewController {
     }
 
     @FXML
-    private void initialize() {
+    public void initialize(URL location, ResourceBundle resources) {
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         infoColumn.setCellValueFactory(cellData -> cellData.getValue().infoProperty());
         showSettingDetails(null);
