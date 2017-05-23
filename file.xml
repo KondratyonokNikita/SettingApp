@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persons>
+    <person>
+        <birthday xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">1999-02-21</birthday>
+        <city>какой-то город</city>
+        <firstName>Hans</firstName>
+        <lastName>Muster</lastName>
+        <postalCode>1234</postalCode>
+        <street>какая-то улица</street>
+    </person>
+    <person>
+        <birthday xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">1999-02-21</birthday>
+        <city>какой-то город</city>
+        <firstName>Ruth</firstName>
+        <lastName>Mueller</lastName>
+        <postalCode>1234</postalCode>
+        <street>какая-то улица</street>
+    </person>
+    <person>
+        <birthday xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">1999-02-21</birthday>
+        <city>какой-то город</city>
+        <firstName>Heinz</firstName>
+        <lastName>Kurz</lastName>
+        <postalCode>1234</postalCode>
+        <street>какая-то улица</street>
+    </person>
+    <person>
+        <birthday xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">1999-02-21</birthday>
+        <city>какой-то город</city>
+        <firstName>Cornelia</firstName>
+        <lastName>Meier</lastName>
+        <postalCode>1234</postalCode>
+        <street>какая-то улица</street>
+    </person>
+    <person>
+        <birthday xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">1999-02-21</birthday>
+        <city>какой-то город</city>
+        <firstName>Werner</firstName>
+        <lastName>Meyer</lastName>
+        <postalCode>1234</postalCode>
+        <street>какая-то улица</street>
+    </person>
+    <person>
+        <birthday xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">1999-02-21</birthday>
+        <city>какой-то город</city>
+        <firstName>Lydia</firstName>
+        <lastName>Kunz</lastName>
+        <postalCode>1234</postalCode>
+        <street>какая-то улица</street>
+    </person>
+    <person>
+        <birthday xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">1999-02-21</birthday>
+        <city>какой-то город</city>
+        <firstName>Anna</firstName>
+        <lastName>Best</lastName>
+        <postalCode>1234</postalCode>
+        <street>какая-то улица</street>
+    </person>
+    <person>
+        <birthday xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">1999-02-21</birthday>
+        <city>какой-то город</city>
+        <firstName>Stefan</firstName>
+        <lastName>Meier</lastName>
+        <postalCode>1234</postalCode>
+        <street>какая-то улица</street>
+    </person>
+    <person>
+        <birthday xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">1999-02-21</birthday>
+        <city>какой-то город</city>
+        <firstName>Martin</firstName>
+        <lastName>Mueller</lastName>
+        <postalCode>1234</postalCode>
+        <street>какая-то улица</street>
+    </person>
+</persons>
