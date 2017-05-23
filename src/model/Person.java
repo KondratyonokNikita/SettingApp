@@ -33,6 +33,10 @@ public class Person implements Setting {
         this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
     }
 
+    public PlainSetting getPlain() {
+        return new PlainPerson(this);
+    }
+
     public StringProperty nameProperty() {
         return firstName;
     }
