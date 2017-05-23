@@ -3,6 +3,7 @@ package model;
 import javafx.beans.property.*;
 import utils.LocalDateAdapter;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 
@@ -45,6 +46,7 @@ public class Person implements Setting {
         return "../view/person/PersonOverview.fxml";
     }
 
+    @XmlAttribute
     public String getFirstName() {
         return firstName.get();
     }

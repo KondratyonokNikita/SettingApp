@@ -40,7 +40,7 @@ public class SettingOverviewController {
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
-        personTable.setItems(mainApp.getPersonData().getPersons());
+        personTable.setItems(mainApp.getPersonData().getSetting());
     }
 
     private void showSettingDetails(Setting setting) {

@@ -8,7 +8,5 @@ import javafx.beans.property.StringProperty;
 public interface Setting {
     StringProperty nameProperty();
     StringProperty infoProperty();
-
     String getView();
-
 }

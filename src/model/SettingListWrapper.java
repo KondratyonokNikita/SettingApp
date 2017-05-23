@@ -4,20 +4,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import loaders.Loader;
 import loaders.MyLoader;
-import savers.MySaver;
+import savers.JAXBSaver;
 import savers.Saver;
-import source.MainApp;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.File;
-import java.util.prefs.Preferences;
 
 /**
  * Created by Samsung on 22.05.2017.
  */
 @XmlRootElement(name = "persons")
+@XmlSeeAlso({model.Person.class})
 public class SettingListWrapper {
 
     private ObservableList<Setting> storage;
@@ -29,12 +29,12 @@ public class SettingListWrapper {
 
     public SettingListWrapper() {
         storage  = FXCollections.observableArrayList();
-        saver = new MySaver();
+        saver = new JAXBSaver();
         loader = new MyLoader();
     }
 
-    @XmlElement(name = "person")
-    public ObservableList<Setting> getPersons() {
+    @XmlElement(name = "setting", type = Object.class)
+    public ObservableList<Setting> getSetting() {
         return storage;
     }
 
