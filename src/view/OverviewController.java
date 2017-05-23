@@ -1,7 +1,7 @@
 package view;
 
+import javafx.stage.Stage;
 import model.Setting;
-import source.MainApp;
 
 /**
  * Created by Samsung on 23.05.2017.
@@ -9,5 +9,7 @@ import source.MainApp;
 public interface OverviewController {
     void showSetting(Setting setting);
 
-    void setMainApp(MainApp mainApp);
+    void setParentController(SettingOverviewController controller);
+
+    void setMainStage(Stage stage);
 }

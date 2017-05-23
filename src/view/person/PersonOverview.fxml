@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="327.0" prefWidth="547.0" styleClass="background" stylesheets="@../DarkTheme.css"
+<AnchorPane prefHeight="300.0" prefWidth="500.0" styleClass="background" stylesheets="@../DarkTheme.css"
             xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="view.person.PersonOverviewController">
     <children>
-        <Label layoutX="64.0" layoutY="32.0" styleClass="label-header" text="Person Details:"/>
-        <GridPane layoutX="98.0" layoutY="81.0">
+        <Label layoutX="64.0" layoutY="32.0" styleClass="label-header" text="Person Details:"
+               AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0"/>
+        <GridPane layoutX="98.0" layoutY="81.0" prefHeight="327.0" prefWidth="547.0" AnchorPane.bottomAnchor="60.0"
+                  AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="60.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
@@ -41,11 +42,10 @@
                        GridPane.rowIndex="5"/>
             </children>
         </GridPane>
-        <HBox layoutX="266.0" layoutY="278.0" spacing="5.0">
+        <HBox layoutX="266.0" layoutY="278.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
             <children>
-                <Button mnemonicParsing="false" text="New..."/>
-                <Button mnemonicParsing="false" text="Edit..."/>
-                <Button mnemonicParsing="false" text="Delete"/>
+                <Button mnemonicParsing="false" onAction="#handleEditPerson" text="Edit..."/>
+                <Button mnemonicParsing="false" onAction="#handleDeleteSetting" text="Delete"/>
             </children>
         </HBox>
     </children>

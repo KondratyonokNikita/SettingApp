@@ -1,12 +1,22 @@
 package view.person;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.Person;
 import model.Setting;
 import source.MainApp;
 import utils.DateUtil;
 import view.OverviewController;
+import view.PersonEditDialogController;
+import view.SettingOverviewController;
+
+import java.io.IOException;
 
 /**
  * Created by Samsung on 23.05.2017.
@@ -25,11 +35,11 @@ public class PersonOverviewController implements OverviewController {
     @FXML
     private Label birthdayLabel;
 
-    private Setting setting;
+    private Stage mainStage;
+    private SettingOverviewController parentController;
 
     @Override
     public void showSetting(Setting setting) {
-        this.setting = setting;
         Person person = (Person) setting;
         if (person != null) {
             firstNameLabel.setText(person.getFirstName());
@@ -49,73 +59,57 @@ public class PersonOverviewController implements OverviewController {
     }
 
     @Override
-    public void setMainApp(MainApp mainApp) {
-
+    public void setParentController(SettingOverviewController controller) {
+        this.parentController = controller;
     }
 
-//    @FXML
-//    private void handleDeleteSetting() {
-//        int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
-//        if (selectedIndex >= 0) {
-//            personTable.getItems().remove(selectedIndex);
-//        } else {
-//            Alert alert = new Alert(Alert.AlertType.WARNING);
-//            alert.initOwner(mainApp.getPrimaryStage());
-//            alert.setTitle("No Selection");
-//            alert.setHeaderText("No Setting Selected");
-//            alert.setContentText("Please select a person in the table.");
-//
-//            alert.showAndWait();
-//        }
-//    }
+    @Override
+    public void setMainStage(Stage stage) {
+        this.mainStage = stage;
+    }
 
-//    @FXML
-//    private void handleNewSetting() {
-//        Setting tempSetting = new Person();
-//        boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
-//        if (okClicked) {
-//            mainApp.getPersonData().add(tempSetting);
-//        }
-//    }
+    @FXML
+    private void handleDeleteSetting() {
+        parentController.deleteSettingDetails();
+    }
 
-//    @FXML
-//    private void handleEditPerson() {
-//        Setting selectedPerson = setting;
-//        if (selectedPerson != null) {
-//            boolean okClicked = mainApp.showPersonEditDialog(selectedPerson);
-//            if (okClicked) {
-//                showPersonDetails(selectedPerson);
-//            }
-//        } else {
-//            Alert alert = new Alert(Alert.AlertType.WARNING);
-//            alert.initOwner(mainApp.getPrimaryStage());
-//            alert.setTitle("No Selection");
-//            alert.setHeaderText("No Person Selected");
-//            alert.setContentText("Please select a person in the table.");
-//
-//            alert.showAndWait();
-//        }
-//    }
+    @FXML
+    private void handleEditPerson() {
+        Person selectedPerson = (Person) parentController.getSelectedSetting();
+        if (selectedPerson != null) {
+            boolean okClicked = showPersonEditDialog(selectedPerson);
+            if (okClicked) {
+                showSetting(selectedPerson);
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(mainStage);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Person Selected");
+            alert.setContentText("Please select a person in the table.");
+            alert.showAndWait();
+        }
+    }
 
-//    public boolean showPersonEditDialog(Person person) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(MainApp.class.getResource("view/PersonEditDialog.fxml"));
-//            AnchorPane page = (AnchorPane) loader.load();
-//            Stage dialogStage = new Stage();
-//            dialogStage.setTitle("Edit Person");
-//            dialogStage.initModality(Modality.WINDOW_MODAL);
-//            dialogStage.initOwner(primaryStage);
-//            Scene scene = new Scene(page);
-//            dialogStage.setScene(scene);
-//            PersonEditDialogController controller = loader.getController();
-//            controller.setDialogStage(dialogStage);
-//            controller.setPerson(person);
-//            dialogStage.showAndWait();
-//            return controller.isOkClicked();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return false;
-//        }
-//    }
+    public boolean showPersonEditDialog(Person person) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("../view/person/PersonEditDialog.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit Person");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(mainStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            PersonEditDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setPerson(person);
+            dialogStage.showAndWait();
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
