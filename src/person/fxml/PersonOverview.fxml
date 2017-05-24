@@ -44,6 +44,7 @@
         </GridPane>
         <HBox layoutX="266.0" layoutY="278.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
             <children>
+                <Button mnemonicParsing="false" onAction="#handleNewPerson" text="New..."/>
                 <Button mnemonicParsing="false" onAction="#handleEditPerson" text="Edit..."/>
                 <Button mnemonicParsing="false" onAction="#handleDeleteSetting" text="Delete"/>
             </children>

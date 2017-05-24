@@ -1,5 +1,6 @@
 package person;
 
+import internal.MainApp;
 import internal.model.Setting;
 import internal.utils.Util;
 import internal.view.OverviewController;
@@ -85,6 +86,16 @@ public class PersonOverviewController implements OverviewController {
             alert.setHeaderText("No Person Selected");
             alert.setContentText("Please select a person in the table.");
             alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void handleNewPerson() {
+        Person newPerson = new Person();
+        boolean okClicked = showPersonEditDialog(newPerson);
+        if (okClicked) {
+            MainApp.settingData.getSetting().add(newPerson);
+            showSetting(newPerson);
         }
     }
 
