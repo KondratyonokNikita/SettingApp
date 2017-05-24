@@ -99,7 +99,7 @@ public class Person implements Setting {
 
     @Override
     public String getView() {
-        return "../view/person/PersonOverview.fxml";
+        return "file:resources/view/person/PersonOverview.fxml";
     }
 
     @XmlAttribute

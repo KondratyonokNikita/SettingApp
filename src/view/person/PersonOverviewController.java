@@ -10,13 +10,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Person;
 import model.Setting;
-import source.MainApp;
 import utils.DateUtil;
 import view.OverviewController;
 import view.PersonEditDialogController;
 import view.SettingOverviewController;
 
 import java.io.IOException;
+import java.net.URL;
 
 /**
  * Created by Samsung on 23.05.2017.
@@ -94,7 +94,7 @@ public class PersonOverviewController implements OverviewController {
     public boolean showPersonEditDialog(Person person) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("../view/person/PersonEditDialog.fxml"));
+            loader.setLocation(new URL("file:resources/view/person/PersonEditDialog.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Edit Person");

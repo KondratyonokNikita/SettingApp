@@ -27,13 +27,10 @@ public class SettingOverviewController implements Initializable {
     private TableColumn<Setting, String> infoColumn;
     @FXML
     private SplitPane splitPane;
-    private MainApp mainApp;
-
-    public SettingOverviewController() {
-    }
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
+        personTable.setItems(MainApp.settingData.getSetting());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         infoColumn.setCellValueFactory(cellData -> cellData.getValue().infoProperty());
         showSettingDetails(null);
@@ -41,25 +38,20 @@ public class SettingOverviewController implements Initializable {
                 (observable, oldValue, newValue) -> showSettingDetails(newValue));
     }
 
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-        personTable.setItems(mainApp.getPersonData().getSetting());
-    }
-
     private void showSettingDetails(Setting setting) {
         try {
             FXMLLoader loader = new FXMLLoader();
             if (setting != null) {
-                loader.setLocation(MainApp.class.getResource(setting.getView()));
+                loader.setLocation(new URL(setting.getView()));
             } else {
-                loader.setLocation(MainApp.class.getResource("../view/EmptyOverview.fxml"));
+                loader.setLocation(new URL("file:resources/view/EmptyOverview.fxml"));
             }
             AnchorPane settingOverview = loader.load();
             splitPane.getItems().set(1, settingOverview);
             if (setting != null) {
                 OverviewController controller = loader.getController();
                 controller.setParentController(this);
-                controller.setMainStage(mainApp.getPrimaryStage());
+                controller.setMainStage(MainApp.primaryStage);
                 controller.showSetting(setting);
             }
         } catch (IOException e) {
@@ -77,7 +69,7 @@ public class SettingOverviewController implements Initializable {
             personTable.getItems().remove(selectedIndex);
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(mainApp.getPrimaryStage());
+            alert.initOwner(MainApp.primaryStage);
             alert.setTitle("No Selection");
             alert.setHeaderText("No Setting Selected");
             alert.setContentText("Please select a person in the table.");

@@ -2,7 +2,8 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="400.0" prefWidth="800.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.111"
+<AnchorPane prefHeight="400.0" prefWidth="800.0" stylesheets="@../../src/view/DarkTheme.css"
+            xmlns="http://javafx.com/javafx/8.0.111"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SettingOverviewController">
    <children>
        <SplitPane fx:id="splitPane" dividerPositions="0.4" prefHeight="300.0" prefWidth="600.0"

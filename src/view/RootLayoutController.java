@@ -42,7 +42,6 @@ public class RootLayoutController implements Initializable {
             String message = MainApp.settingData.load(file);
             Util.showAlert("Open dialog", message, MainApp.primaryStage, Alert.AlertType.INFORMATION);
         }
-
     }
 
     @FXML
@@ -92,7 +91,7 @@ public class RootLayoutController implements Initializable {
         try {
             MainApp.isSplashLoaded = true;
 
-            StackPane pane = FXMLLoader.load(MainApp.class.getResource("../view/SplashFXML.fxml"));
+            StackPane pane = FXMLLoader.load(new URL("file:resources/view/SplashFXML.fxml"));
             root.setCenter(pane);
 
             FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), pane);
@@ -113,8 +112,9 @@ public class RootLayoutController implements Initializable {
 
             fadeOut.setOnFinished((e) -> {
                 try {
-                    AnchorPane parentContent = FXMLLoader.load(MainApp.class.getResource("../view/SettingOverview.fxml"));
+                    AnchorPane parentContent = FXMLLoader.load(new URL("file:resources/view/SettingOverview.fxml"));
                     root.setCenter(parentContent);
+                    MainApp.settingData.load();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
