@@ -1,7 +1,7 @@
 package loaders;
 
-import model.Person;
-import model.Setting;
+import internal.model.Setting;
+import person.Person;
 
 /**
  * Created by Samsung on 23.05.2017.
