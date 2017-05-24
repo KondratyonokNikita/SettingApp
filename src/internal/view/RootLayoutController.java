@@ -1,12 +1,10 @@
 package internal.view;
 
 import internal.MainApp;
-import internal.loaders.BinaryLoader;
-import internal.loaders.DOMLoader;
-import internal.loaders.JAXBLoader;
-import internal.loaders.SAXLoader;
+import internal.loaders.*;
 import internal.savers.BinarySaver;
 import internal.savers.JAXBSaver;
+import internal.savers.Saver;
 import internal.utils.Util;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
@@ -32,77 +30,58 @@ public class RootLayoutController implements Initializable {
     @FXML
     private BorderPane root;
 
-    @FXML
-    private void handleDOMLoad() {
+    private void load(Loader loader, String format, String extension) {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
-                "XML files (*.xml)", "*.xml");
+                format + " (*." + extension + ")", extension);
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(MainApp.primaryStage);
         if (file != null) {
-            MainApp.settingData.setLoader(new DOMLoader());
+            MainApp.settingData.setLoader(loader);
             String message = MainApp.settingData.load(file);
             Util.showAlert("Open dialog", message, MainApp.primaryStage, Alert.AlertType.INFORMATION);
         }
     }
 
-    @FXML
-    private void handleSAXLoad() {
+    private void save(Saver saver, String format, String extension) {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
-                "XML files (*.xml)", "*.xml");
-        fileChooser.getExtensionFilters().add(extFilter);
-        File file = fileChooser.showOpenDialog(MainApp.primaryStage);
-        if (file != null) {
-            MainApp.settingData.setLoader(new SAXLoader());
-            String message = MainApp.settingData.load(file);
-            Util.showAlert("Open dialog", message, MainApp.primaryStage, Alert.AlertType.INFORMATION);
-        }
-    }
-
-    @FXML
-    private void handleBinLoad() {
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
-                "XML files (*.xml)", "*.xml");
-        fileChooser.getExtensionFilters().add(extFilter);
-        File file = fileChooser.showOpenDialog(MainApp.primaryStage);
-        if (file != null) {
-            MainApp.settingData.setLoader(new BinaryLoader());
-            String message = MainApp.settingData.load(file);
-            Util.showAlert("Open dialog", message, MainApp.primaryStage, Alert.AlertType.INFORMATION);
-        }
-    }
-
-    @FXML
-    private void handleBinSave() {
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
-                "Bin files (*.bin)", "*.bin");
+                format + " (*." + extension + ")", extension);
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showSaveDialog(MainApp.primaryStage);
         if (file != null) {
-            if (!file.getPath().endsWith(".bin")) {
-                file = new File(file.getPath() + ".bin");
+            if (!file.getPath().endsWith("." + extension)) {
+                file = new File(file.getPath() + "." + extension);
             }
-            MainApp.settingData.setSaver(new BinarySaver());
+            MainApp.settingData.setSaver(saver);
             String message = MainApp.settingData.save(file);
             Util.showAlert("Save dialog", message, MainApp.primaryStage, Alert.AlertType.INFORMATION);
         }
     }
 
     @FXML
+    private void handleDOMLoad() {
+        load(new DOMLoader(), "XML files", "xml");
+    }
+
+    @FXML
+    private void handleSAXLoad() {
+        load(new SAXLoader(), "XML files", "xml");
+    }
+
+    @FXML
+    private void handleBinLoad() {
+        load(new BinaryLoader(), "Bin files", "bin");
+    }
+
+    @FXML
+    private void handleBinSave() {
+        save(new BinarySaver(), "Bin files", "bin");
+    }
+
+    @FXML
     private void handleOpen() {
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
-                "XML files (*.xml)", "*.xml");
-        fileChooser.getExtensionFilters().add(extFilter);
-        File file = fileChooser.showOpenDialog(MainApp.primaryStage);
-        if (file != null) {
-            MainApp.settingData.setLoader(new JAXBLoader());
-            String message = MainApp.settingData.load(file);
-            Util.showAlert("Open dialog", message, MainApp.primaryStage, Alert.AlertType.INFORMATION);
-        }
+        load(new JAXBLoader(), "XML files", "xml");
     }
 
     @FXML
@@ -114,19 +93,7 @@ public class RootLayoutController implements Initializable {
 
     @FXML
     private void handleSaveAs() {
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
-                "XML files (*.xml)", "*.xml");
-        fileChooser.getExtensionFilters().add(extFilter);
-        File file = fileChooser.showSaveDialog(MainApp.primaryStage);
-        if (file != null) {
-            if (!file.getPath().endsWith(".xml")) {
-                file = new File(file.getPath() + ".xml");
-            }
-            MainApp.settingData.setSaver(new JAXBSaver());
-            String message = MainApp.settingData.save(file);
-            Util.showAlert("Save dialog", message, MainApp.primaryStage, Alert.AlertType.INFORMATION);
-        }
+        save(new JAXBSaver(), "XML files", "xml");
     }
 
     @FXML
