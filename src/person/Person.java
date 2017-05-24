@@ -3,7 +3,9 @@ package person;
 import internal.model.PlainSetting;
 import internal.model.Setting;
 import internal.utils.LocalDateAdapter;
-import javafx.beans.property.*;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.StringProperty;
 import org.w3c.dom.Element;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -27,17 +29,6 @@ public class Person implements Setting {
     private ObjectProperty<LocalDate> birthday;
 
     public Person() {
-        this(null, null);
-    }
-
-    public Person(String firstName, String lastName) {
-        this.firstName = new SimpleStringProperty(firstName);
-        this.lastName = new SimpleStringProperty(lastName);
-
-        this.street = new SimpleStringProperty("какая-то улица");
-        this.postalCode = new SimpleIntegerProperty(1234);
-        this.city = new SimpleStringProperty("какой-то город");
-        this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
     }
 
     @Override
