@@ -14,11 +14,21 @@ import java.net.URL;
 public interface Setting extends Serializable {
     StringProperty nameProperty();
     StringProperty infoProperty();
-
     URL getView();
-    PlainSetting getPlain();
-    void setNode(Element element);
-    void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException;
-    void endElement(String uri, String localName, String qName) throws SAXException;
-    void characters(char ch[], int start, int length) throws SAXException;
+
+    default PlainSetting getPlain() {
+        return null;
+    }
+
+    default void setNode(Element element) {
+    }
+
+    default void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+    }
+
+    default void endElement(String uri, String localName, String qName) throws SAXException {
+    }
+
+    default void characters(char ch[], int start, int length) throws SAXException {
+    }
 }

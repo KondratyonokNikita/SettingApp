@@ -20,7 +20,10 @@ public class BinarySaver implements Saver {
         try {
             List<PlainSetting> plain = new ArrayList<>();
             for (Setting setting : storage.getSetting()) {
-                plain.add(setting.getPlain());
+                PlainSetting plainSetting = setting.getPlain();
+                if (plainSetting != null) {
+                    plain.add(setting.getPlain());
+                }
             }
             FileOutputStream f_out = new FileOutputStream(file);
             ObjectOutputStream obj_out = new ObjectOutputStream(f_out);

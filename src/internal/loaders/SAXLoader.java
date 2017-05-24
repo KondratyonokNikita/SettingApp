@@ -28,7 +28,6 @@ public class SAXLoader implements Loader {
             saxParser.parse(file, handler);
             return "Successfully loaded data from file:\n" + file.getAbsolutePath();
         } catch (Exception e) {
-            System.out.println(e.toString());
             return "Could not load data from file:\n" + file.getPath();
         }
     }
@@ -39,7 +38,6 @@ public class SAXLoader implements Loader {
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
             if (qName.equalsIgnoreCase("settings")) {
-                System.out.println("Start parsing");
             } else if (qName.equalsIgnoreCase("setting")) {
                 setting = Switcher.getObject(attributes.getValue("xsi:type"));
                 setting.startElement(uri, localName, qName, attributes);
@@ -51,7 +49,6 @@ public class SAXLoader implements Loader {
         @Override
         public void endElement(String uri, String localName, String qName) throws SAXException {
             if (qName.equalsIgnoreCase("settings")) {
-                System.out.println("End parsing");
             } else if (qName.equalsIgnoreCase("setting")) {
                 storage.getSetting().add(setting);
                 setting = null;

@@ -37,28 +37,4 @@ public class PlainPerson implements PlainSetting {
         person.setBirthday(birthday);
         return person;
     }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public Integer getPostalCode() {
-        return postalCode;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public LocalDate getBirthday() {
-        return birthday;
-    }
 }
