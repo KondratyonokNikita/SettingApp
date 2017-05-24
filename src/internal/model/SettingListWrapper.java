@@ -1,7 +1,7 @@
 package internal.model;
 
+import internal.loaders.JAXBLoader;
 import internal.loaders.Loader;
-import internal.loaders.SAXLoader;
 import internal.savers.JAXBSaver;
 import internal.savers.Saver;
 import javafx.collections.FXCollections;
@@ -29,14 +29,18 @@ public class SettingListWrapper implements Serializable {
     @XmlTransient
     private Loader loader;
 
+    public void setLoader(Loader loader) {
+        this.loader = loader;
+    }
+
+    public void setSaver(Saver saver) {
+        this.saver = saver;
+    }
+
     public SettingListWrapper() {
         storage  = FXCollections.observableArrayList();
         saver = new JAXBSaver();
-        //saver = new BinarySaver();
-        //loader = new JAXBLoader();
-        //loader = new BinaryLoader();
-        //loader = new DOMLoader();
-        loader = new SAXLoader();
+        loader = new JAXBLoader();
     }
 
     @XmlElement(name = "setting", type = Object.class)

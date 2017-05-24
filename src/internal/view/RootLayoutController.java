@@ -1,6 +1,12 @@
 package internal.view;
 
 import internal.MainApp;
+import internal.loaders.BinaryLoader;
+import internal.loaders.DOMLoader;
+import internal.loaders.JAXBLoader;
+import internal.loaders.SAXLoader;
+import internal.savers.BinarySaver;
+import internal.savers.JAXBSaver;
 import internal.utils.Util;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
@@ -27,8 +33,62 @@ public class RootLayoutController implements Initializable {
     private BorderPane root;
 
     @FXML
-    private void handleNew() {
-        MainApp.settingData.clear();
+    private void handleDOMLoad() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "XML files (*.xml)", "*.xml");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(MainApp.primaryStage);
+        if (file != null) {
+            MainApp.settingData.setLoader(new DOMLoader());
+            String message = MainApp.settingData.load(file);
+            Util.showAlert("Open dialog", message, MainApp.primaryStage, Alert.AlertType.INFORMATION);
+        }
+    }
+
+    @FXML
+    private void handleSAXLoad() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "XML files (*.xml)", "*.xml");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(MainApp.primaryStage);
+        if (file != null) {
+            MainApp.settingData.setLoader(new SAXLoader());
+            String message = MainApp.settingData.load(file);
+            Util.showAlert("Open dialog", message, MainApp.primaryStage, Alert.AlertType.INFORMATION);
+        }
+    }
+
+    @FXML
+    private void handleBinLoad() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "XML files (*.xml)", "*.xml");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(MainApp.primaryStage);
+        if (file != null) {
+            MainApp.settingData.setLoader(new BinaryLoader());
+            String message = MainApp.settingData.load(file);
+            Util.showAlert("Open dialog", message, MainApp.primaryStage, Alert.AlertType.INFORMATION);
+        }
+    }
+
+    @FXML
+    private void handleBinSave() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "Bin files (*.bin)", "*.bin");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showSaveDialog(MainApp.primaryStage);
+        if (file != null) {
+            if (!file.getPath().endsWith(".bin")) {
+                file = new File(file.getPath() + ".bin");
+            }
+            MainApp.settingData.setSaver(new BinarySaver());
+            String message = MainApp.settingData.save(file);
+            Util.showAlert("Save dialog", message, MainApp.primaryStage, Alert.AlertType.INFORMATION);
+        }
     }
 
     @FXML
@@ -39,6 +99,7 @@ public class RootLayoutController implements Initializable {
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(MainApp.primaryStage);
         if (file != null) {
+            MainApp.settingData.setLoader(new JAXBLoader());
             String message = MainApp.settingData.load(file);
             Util.showAlert("Open dialog", message, MainApp.primaryStage, Alert.AlertType.INFORMATION);
         }
@@ -46,6 +107,7 @@ public class RootLayoutController implements Initializable {
 
     @FXML
     private void handleSave() {
+        MainApp.settingData.setSaver(new JAXBSaver());
         String message = MainApp.settingData.save();
         Util.showAlert("Save dialog", message, MainApp.primaryStage, Alert.AlertType.INFORMATION);
     }
@@ -61,6 +123,7 @@ public class RootLayoutController implements Initializable {
             if (!file.getPath().endsWith(".xml")) {
                 file = new File(file.getPath() + ".xml");
             }
+            MainApp.settingData.setSaver(new JAXBSaver());
             String message = MainApp.settingData.save(file);
             Util.showAlert("Save dialog", message, MainApp.primaryStage, Alert.AlertType.INFORMATION);
         }
