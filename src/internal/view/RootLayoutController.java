@@ -33,7 +33,7 @@ public class RootLayoutController implements Initializable {
     private void load(Loader loader, String format, String extension) {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
-                format + " (*." + extension + ")", extension);
+                format + " (*." + extension + ")", "*." + extension);
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(MainApp.primaryStage);
         if (file != null) {
@@ -46,7 +46,7 @@ public class RootLayoutController implements Initializable {
     private void save(Saver saver, String format, String extension) {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
-                format + " (*." + extension + ")", extension);
+                format + " (*." + extension + ")", "*." + extension);
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showSaveDialog(MainApp.primaryStage);
         if (file != null) {

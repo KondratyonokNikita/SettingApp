@@ -2,13 +2,17 @@ package internal; /**
  * Created by Samsung on 22.05.2017.
  */
 
+import internal.model.Setting;
 import internal.model.SettingListWrapper;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import person.Person;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,6 +22,7 @@ import java.util.Properties;
 
 public class MainApp extends Application {
 
+    private static String propertiesName = "test.properties";
     public static Stage primaryStage;
     public static Properties properties;
     public static boolean isSplashLoaded = false;
@@ -34,26 +39,28 @@ public class MainApp extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    private static void setProperties() {
         try {
             MainApp.properties = new Properties();
-            File file = new File("test.properties");
+            File file = new File(propertiesName);
             FileInputStream fileInput = new FileInputStream(file);
             properties.load(fileInput);
             fileInput.close();
-
-            String value = properties.getProperty("favoriteAnimal");
-            System.out.println(value);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        // Получаем имя класса из файла builder.properties
-//        PropertyResourceBundle pr = (PropertyResourceBundle)
-//                PropertyResourceBundle.getBundle("application", ResourceBundle.Control.getControl(FORMAT_PROPERTIES));
-//        String className = pr.getString(BUILDER_CLASS);
-//        System.out.println(className);
-//        //launch(args);
+    }
+
+    public MainApp() {
+        ObservableList<Setting> temp = FXCollections.observableArrayList();
+        temp.add(new Person());
+        settingData.setSetting(temp);
+    }
+
+    public static void main(String[] args) {
+        setProperties();
+        launch(args);
     }
 }

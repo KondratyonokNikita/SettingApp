@@ -1,11 +1,10 @@
 package person;
 
+import internal.MainApp;
 import internal.model.PlainSetting;
 import internal.model.Setting;
 import internal.utils.LocalDateAdapter;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import org.w3c.dom.Element;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -29,6 +28,12 @@ public class Person implements Setting {
     private ObjectProperty<LocalDate> birthday;
 
     public Person() {
+        this.firstName = new SimpleStringProperty(MainApp.properties.getProperty("person.firstName"));
+        this.lastName = new SimpleStringProperty(MainApp.properties.getProperty("person.lastName"));
+        this.street = new SimpleStringProperty(MainApp.properties.getProperty("person.street"));
+        this.postalCode = new SimpleIntegerProperty(0);
+        this.city = new SimpleStringProperty("");
+        this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.now());
     }
 
     @Override
