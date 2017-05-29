@@ -2,7 +2,6 @@ package internal.loaders;
 
 import internal.model.Setting;
 import internal.model.SettingListWrapper;
-import loaders.Switcher;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

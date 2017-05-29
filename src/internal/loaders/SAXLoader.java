@@ -2,7 +2,6 @@ package internal.loaders;
 
 import internal.model.Setting;
 import internal.model.SettingListWrapper;
-import loaders.Switcher;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;

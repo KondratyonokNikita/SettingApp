@@ -1,4 +1,4 @@
-package loaders;
+package internal.loaders;
 
 import internal.MainApp;
 import internal.model.Setting;
@@ -21,12 +21,5 @@ public class Switcher {
             e.printStackTrace();
         }
         return null;
-//        Setting setting = null;
-//        switch (type) {
-//            case "person":
-//                setting = new Person();
-//                break;
-//        }
-//        return setting;
     }
 }
